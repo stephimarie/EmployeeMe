@@ -1,8 +1,6 @@
 # EmployeeMe
 Employee tracker 
 
-[STEPHANIE MC CANDLESS.pdf](https://github.com/stephimarie/EmployeeMe/files/5767955/STEPHANIE.MC.CANDLESS.pdf)
-
 
 # Unit 12 MySQL Homework: Employee Tracker
 
