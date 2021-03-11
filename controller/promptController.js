@@ -79,7 +79,14 @@ module.exports ={
             }),
         },
     ]);
+
         console.log("new employee data:", title, salary, department_id);
+
+        await connection.query("INSERT INTO role SET ?, ?, ?", [
+            { title }, 
+            { salary }, 
+            { department_id },
+        ]);
 
         this.mainMenu();
     },
