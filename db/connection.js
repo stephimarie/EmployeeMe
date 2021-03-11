@@ -5,7 +5,7 @@ const connection = mysqul.createConnection({
     host: "localhost",
     port: 3306,
     user: "root",
-    password: "lovejet7",
+    password: "loveJet7",
     database: "employee_tracker",
 });
 

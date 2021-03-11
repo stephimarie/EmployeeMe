@@ -1,5 +1,5 @@
 const inquirer = require("inquirer");
-// const connection = require("../db/connection"); --Not working
+// const connection = require("../db/connection"); 
 
 module.exports ={
     mainMenu: async function() {
@@ -53,12 +53,14 @@ module.exports ={
     },
 
     addDepartment: async function () {
-        const {name} = await inquirer.prompt({
+        const { name } = await inquirer.prompt({
             type: "text",
             name: "name",
             message: "What is the name of this department?",
         });
 
-        await connection.query("INSERT INTO department SET?", [{ name }]);
+        await connection.query("INSERT INTO department SET ?", [{ name }]);
+        console.log("success!!!");
+        this.mainMenu();
     },
 };
