@@ -67,10 +67,6 @@ module.exports ={
     addRole: async function () {
         const departments = await connection.query("SELECT * FROM department");
 
-        const departmentData = console.log("before", "departments");
-        console.log("after", "departments");
-        
-
         const { title, salary, department_id } = await inquirer.prompt([
         { type: "text", name: "title", message: "What is the title?" },
         { type: "number", name: "salary", message: "What is the salary?" },
