@@ -26,7 +26,8 @@ module.exports ={
                 break;
         
             default:
+                process.exit();
                 break;
         }
-    }
-}
+    },
+};
