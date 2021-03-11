@@ -31,7 +31,7 @@ module.exports ={
                 console.log("hi");
                 break;
             case "View Roles":
-                console.log("hi");
+                this.viewRoles();
                 break;
             case "View Employees":
                 console.log("hi");
@@ -113,7 +113,7 @@ module.exports ={
                 title, 
                 salary, 
                 department: name,
-            }
+            };
         });
         this.mainMenu();
     }, 
