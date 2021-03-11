@@ -2,13 +2,13 @@ const inquirer = require("inquirer");
 
 module.exports ={
     mainMenu: async function() {
-        const { menuChoice } = await inquirer.prompt({
+        const { modeChoice } = await inquirer.prompt({
             message: "What would you like to do?",
             type: "list",
             name: "menuChoice",
-            choices: ["this", "that"],
+            choices: ["Add a Department", "that"],
         });
     
-        console.log(menuChoice);
+        console.log(modeChoice);
     }
 }
