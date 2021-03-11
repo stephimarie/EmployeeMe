@@ -65,15 +65,11 @@ module.exports ={
     
     // NOTE: addRole needs a department id
     addRole: async function () {
-        const department = await connection.query("SELECT * FROM department");
+        const departments = await connection.query("SELECT * FROM department");
 
-        const departmentData = departments.map((department) => { 
-            return {name: department.name, value: department.id };
-        });
-
-        console.log("before", "departments");
+        const departmentData = console.log("before", "departments");
         console.log("after", "departments");
-
+        
 
         const { title, salary, department_id } = await inquirer.prompt([
         { type: "text", name: "title", message: "What is the title?" },
@@ -82,11 +78,13 @@ module.exports ={
             type: "list", 
             name: "department_id", 
             message: "What department does this role belong to?",
-            choices: departmentData,
+            choices: departments.map((department) => { 
+                return { name: department.name, value: department.id };
+            }),
         },
     ]);
-        console.log("deparment_id"):
-        
+        console.log("new employee data:", title, salary, department_id);
+
         this.mainMenu();
     },
 
