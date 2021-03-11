@@ -37,7 +37,7 @@ module.exports ={
                 console.log("hi");
                 break;
             case "View Department":
-                console.log("hi");
+                this.viewDepartments();
                 break;
             case "Edit Employee Role":
                 console.log("hi");
