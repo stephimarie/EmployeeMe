@@ -67,10 +67,11 @@ module.exports ={
     viewDepartments: async function () {
         const department = await connection.query("SELECT * FROM department");
         
-        const departmentData = departments.map(department => {
-            return { id: department.id, name: department.name };
-        });
-        console.table(departmentData);
+        console.table(departments.map((department) => {
+            return { id: department.id, department: department.name };
+        })
+        
+        );
 
         this.mainMenu();
     },

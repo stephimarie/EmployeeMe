@@ -13,3 +13,5 @@ connection.connect();
 connection.query = util.promisify(connection.query);
 
 module.exports = connection;
+
+// 00:34:32 stop video
