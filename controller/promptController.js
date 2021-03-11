@@ -108,13 +108,16 @@ module.exports ={
             "SELECT * FROM role LEFT JOIN department ON role.department_id = department.id"
         );
 
-        console.table(({ title, salary, name }) => {
-            return {
-                title, 
-                salary, 
-                department: name,
-            };
-        });
+        console.table(
+            roles.map(({ title, salary, name }) => {
+                return {
+                    title, 
+                    salary,
+                    name,
+                };
+            })
+        );
+
         this.mainMenu();
     }, 
 };
