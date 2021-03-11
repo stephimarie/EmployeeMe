@@ -1,11 +1,17 @@
-var figlet = require("figlet");
+const figlet = require("figlet");
+const inquirer = require("inquirer");
 
-figlet("Hello World!!", function (err, data) {
-    if (err) {
-        console.log("Something went wrong...");
-        console.dir(err);
-        return;
-    }
-    console.log(date);
+// Shows the Employee Tracker in Terminal
+figlet("Employee Tracker", async (err, transformed) => {
+    if (err) throw err;
+    console.log(transformed);
     
+    const inqRes = inquirer.prompt({
+        message: "What would you like to do?"
+        type: "list",
+        name: "menuChoice",
+        choices: ["this", "that"],
+    });
+
+    console.log(inqRes);
 });
