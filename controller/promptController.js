@@ -1,5 +1,5 @@
 const inquirer = require("inquirer");
-// const connection = require("../db/connection");
+// const connection = require("../db/connection"); --Not working
 
 module.exports ={
     mainMenu: async function() {
@@ -23,7 +23,7 @@ module.exports ={
 
         switch (modeChoice) {
             case "Add a Department":
-                console.log("hi");
+                this.addDepartment();
                 break;
             case "Add a Role":
                 console.log("hi");
@@ -49,5 +49,16 @@ module.exports ={
                 process.exit();
                 break;
         }
+
+    },
+
+    addDepartment: async function () {
+        const {name} = await inquirer.prompt({
+            type: "text",
+            name: "name",
+            message: "What is the name of this department?",
+        });
+
+        await connection.query("INSERT INTO department SET?", [{ name }]);
     },
 };
