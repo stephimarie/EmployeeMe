@@ -1,4 +1,5 @@
 const inquirer = require("inquirer");
+const connection = require("../db/connection");
 // const connection = require("../db/connection"); 
 
 module.exports ={
@@ -19,7 +20,6 @@ module.exports ={
             ],
         });
     
-        console.log(modeChoice);
 
         switch (modeChoice) {
             case "Add a Department":
@@ -49,9 +49,9 @@ module.exports ={
                 process.exit();
                 break;
         }
-
     },
 
+    // NOTE: Logic for add department, employee and role
     addDepartment: async function () {
         const { name } = await inquirer.prompt({
             type: "text",
@@ -63,4 +63,14 @@ module.exports ={
         console.log("success!!!");
         this.mainMenu();
     },
+       
+    // NOTE: Logic for viewing department, employee and role
+    viewDepartments: async function () {
+        const department = await connection.query("SELECT * FROM department");
+
+        
+    },
+
+
+
 };
