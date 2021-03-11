@@ -1,6 +1,5 @@
 const inquirer = require("inquirer");
-const connection = require("../db/connection");
-// const connection = require("../db/connection"); 
+// const connection = require("../db/connection");
 
 module.exports ={
     mainMenu: async function() {
@@ -72,5 +71,7 @@ module.exports ={
             return { id: department.id, name: department.name };
         });
         console.table(departmentData);
+
+        this.mainMenu();
     },
 };
