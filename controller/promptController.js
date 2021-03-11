@@ -67,10 +67,10 @@ module.exports ={
     // NOTE: Logic for viewing department, employee and role
     viewDepartments: async function () {
         const department = await connection.query("SELECT * FROM department");
-
         
+        const departmentData = departments.map(department => {
+            return { id: department.id, name: department.name };
+        });
+        console.table(departmentData);
     },
-
-
-
 };
