@@ -88,6 +88,7 @@ module.exports ={
             { department_id },
         ]);
 
+        console.log("Success!!");
         this.mainMenu();
     },
 
