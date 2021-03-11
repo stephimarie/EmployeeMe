@@ -25,7 +25,7 @@ module.exports ={
                 this.addDepartment();
                 break;
             case "Add a Role":
-                console.log("hi");
+                this.addRole();
                 break;
             case "Add an Employee":
                 console.log("hi");
@@ -44,7 +44,7 @@ module.exports ={
                 break;    
         
             default:
-                console.log("byee");
+                console.log("bye");
                 process.exit();
                 break;
         }
@@ -62,7 +62,34 @@ module.exports ={
         console.log("success!!!");
         this.mainMenu();
     },
-       
+    
+    // NOTE: addRole needs a department id
+    addRole: async function () {
+        const department = await connection.query("SELECT * FROM department");
+
+        const departmentData = departments.map((department) => { 
+            return {name: department.name, value: department.id };
+        });
+
+        console.log("before", "departments");
+        console.log("after", "departments");
+
+
+        const { title, salary, department_id } = await inquirer.prompt([
+        { type: "text", name: "title", message: "What is the title?" },
+        { type: "number", name: "salary", message: "What is the salary?" },
+        { 
+            type: "list", 
+            name: "department_id", 
+            message: "What department does this role belong to?",
+            choices: departmentData,
+        },
+    ]);
+        console.log("deparment_id"):
+        
+        this.mainMenu();
+    },
+
     // NOTE: Logic for viewing department, employee and role
     viewDepartments: async function () {
         const department = await connection.query("SELECT * FROM department");
