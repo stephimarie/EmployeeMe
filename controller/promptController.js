@@ -102,4 +102,13 @@ module.exports ={
 
         this.mainMenu();
     },
+
+    viewRoles: async function () {
+        const roles = await connection.query(
+            "SELECT * FROM role LEFT JOIN department ON role.department_id = department.id"
+        );
+
+        console.log(roles);
+        this.mainMenu();
+    }, 
 };
