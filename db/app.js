@@ -6,12 +6,12 @@ figlet("Employee Tracker", async (err, transformed) => {
     if (err) throw err;
     console.log(transformed);
     
-    const inqRes = inquirer.prompt({
-        message: "What would you like to do?"
+    const { menuChoice } = await inquirer.prompt({
+        message: "What would you like to do?",
         type: "list",
         name: "menuChoice",
         choices: ["this", "that"],
     });
 
-    console.log(inqRes);
+    console.log(menuChoice);
 });
