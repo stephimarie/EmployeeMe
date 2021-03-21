@@ -123,7 +123,21 @@ module.exports ={
             "SELECT * FROM role WHERE department_id = ?",
             [department_id]
         );
-        console.log(roles);
+
+
+        const {roles_id} = await inquirer.prompt({
+            type: "list",
+            name: "roles_id",
+            message: "Which role?",
+            choices: roles.map(role => {
+                return{
+                    name: role.title,
+                    value: role.id,
+                };
+            }),
+        });    
+
+
         this.mainMenu();     
 
         // NOTE: Logic for viewing department, employee and role
