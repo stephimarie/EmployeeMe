@@ -237,12 +237,13 @@ module.exports ={
             const { id } = await inquirer.prompt({
                 message: "Which employees role are you changing?",
                 name: "id",
+                type: "list",
                 choices: employees.map(employee => {
                     return { name: employee.name, value: employee.id };
                 }),
             });
 
-
+            const chosenEmployee = employees.filter((employee) =>  employee.id === id);
             this.mainMenu();
         };
     },
