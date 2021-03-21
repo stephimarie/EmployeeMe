@@ -113,7 +113,7 @@ module.exports ={
                 return {
                     title, 
                     salary,
-                    name,
+                    department: name,
                 };
             })
         );
