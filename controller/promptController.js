@@ -247,9 +247,9 @@ module.exports ={
                 (employee) =>  employee.id === id
                 )[0];
 
-                const roles = await connection.query("SELECT * FROM roles");
+                const roles = await connection.query("SELECT * FROM role");
                 
-                const (newRolesId) = inquirer.prompt({
+                const (newRoleId) = inquirer.prompt({
                     message: "Which role would you like to switch the employee to?",
                     name: "newRoleId",
                     type: "list",
@@ -260,6 +260,11 @@ module.exports ={
                         };
                     }),
                 });
+
+                const query = await connection.createQuery(
+                    "UPDATE employee SET role_id=? WHERE id=?",
+                    [newRoleId, chosenEmployee.id]
+                );
 
             this.mainMenu();
         };
