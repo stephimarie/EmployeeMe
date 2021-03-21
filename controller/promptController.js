@@ -1,4 +1,5 @@
 const inquirer = require("inquirer");
+const connection = require("../db/connection");
 // const connection = require("../db/connection");
 
 module.exports ={
@@ -90,7 +91,7 @@ module.exports ={
         this.mainMenu();
     },
 
-    addEmployee: async function(){
+    addEmployee: async function () {
         const newEmployee = await inquirer.prompt([
             {
                 type: "text",
@@ -101,37 +102,49 @@ module.exports ={
                 type: "text",
                 message: "What is the employees last name?",
                 name: "last_name",
-            }
+            },
         ]);
-    },
 
-    // NOTE: Logic for viewing department, employee and role
-    viewDepartments: async function () {
-        const department = await connection.query("SELECT * FROM department");
-        
-        console.table(
-            departments.map((department) => {
-            return { id: department.id, department: department.name };
-            })
-        );
+        const { departments } = await connection.query( "SELECT * FROM department");
 
-        this.mainMenu();
-    },
-
-    viewRoles: async function () {
-        const roles = await connection.query(
-            "SELECT * FROM role LEFT JOIN department ON role.department_id = department.id"
-        );
-
-        console.table(roles.map(({ title, salary, name }) => {
+        const { department_id } = await inquirer.prompt({
+            type: "list",
+            name: "department",
+            choices: departments.map(department => {
                 return {
-                    title, 
-                    salary,
-                    department: name,
+                    name: department.name,
+                    value: department.id,
                 };
-            })
-        );
+            }),
+        }),
 
-        this.mainMenu();
-    }, 
-};
+        // NOTE: Logic for viewing department, employee and role
+        viewDepartments: async function () {
+            const department = await connection.query("SELECT * FROM department");
+        
+            console.table(
+                departments.map((department) => {
+                return { id: department.id, department: department.name };
+                })
+            );
+
+            this.mainMenu();
+        },
+
+        viewRoles: async function () {
+            const roles = await connection.query(
+             "SELECT * FROM role LEFT JOIN department ON role.department_id = department.id"
+            );
+
+            console.table(roles.map(({ title, salary, name }) => {
+                    return {
+                        title, 
+                        salary,
+                        department: name,
+                    };
+                })
+            );
+
+            this.mainMenu();
+        }, 
+    };
