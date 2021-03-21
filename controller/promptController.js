@@ -243,7 +243,24 @@ module.exports ={
                 }),
             });
 
-            const chosenEmployee = employees.filter((employee) =>  employee.id === id);
+            const chosenEmployee = employees.filter(
+                (employee) =>  employee.id === id
+                )[0];
+
+                const roles = await connection.query("SELECT * FROM roles");
+                
+                const (newRolesId) = inquirer.prompt({
+                    message: "Which role would you like to switch the employee to?",
+                    name: "newRoleId",
+                    type: "list",
+                    choices: roles.map((role) => {
+                        return { 
+                            name: role.title, 
+                            value: role.id 
+                        };
+                    }),
+                });
+
             this.mainMenu();
         };
     },
