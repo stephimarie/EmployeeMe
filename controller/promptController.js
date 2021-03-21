@@ -1,7 +1,6 @@
 const inquirer = require("inquirer");
 const { listenerCount } = require("../db/connection");
 const connection = require("../db/connection");
-// const connection = require("../db/connection");
 
 module.exports ={
     mainMenu: async function() {
@@ -147,6 +146,7 @@ module.exports ={
             const res = await connection.query("INSERT INTO employee SET ?", [
                 newEmployee
             ]);
+
         } else {
             const employees = await connection.query("SELECT * FROM employee");
             const employeeData = employees.map(employee => {
@@ -155,6 +155,7 @@ module.exports ={
                     value: employee.id,
                 };
             });
+
             const { manager_id } = await inquirer.prompt({
                 message: "Who is this employees manager?",
                 name: "manager_id",
@@ -232,7 +233,17 @@ module.exports ={
             const employee = await connection.query(
                 "SELECT id, role_id, manager_id, CONCAT(first_name, ' ', last_name) AS name FROM employees"
             );
+                
+            const { id } = await inquirer.prompt({
+                message: "Which employees role are you changing?",
+                name: "id",
+                choices: employees.map(employee => {
+                    return { name: employee.name, value: employee.id };
+                }),
+            });
+
 
             this.mainMenu();
         };
-    };
+    },
+};    
