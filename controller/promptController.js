@@ -34,7 +34,7 @@ module.exports ={
                 this.viewRoles();
                 break;
             case "View Employees":
-                console.log("hi");
+                this.addEmployee();
                 break;
             case "View Department":
                 this.viewDepartments();
@@ -90,14 +90,29 @@ module.exports ={
         this.mainMenu();
     },
 
+    addEmployee: async function(){
+        const newEmployee = await inquirer.prompt([
+            {
+                type: "text",
+                message: "What is the employees first name?",
+                name: "first_name",
+            },
+            {
+                type: "text",
+                message: "What is the employees last name?",
+                name: "last_name",
+            }
+        ]);
+    },
+
     // NOTE: Logic for viewing department, employee and role
     viewDepartments: async function () {
         const department = await connection.query("SELECT * FROM department");
         
-        console.table(departments.map((department) => {
+        console.table(
+            departments.map((department) => {
             return { id: department.id, department: department.name };
-        })
-        
+            })
         );
 
         this.mainMenu();
@@ -108,8 +123,7 @@ module.exports ={
             "SELECT * FROM role LEFT JOIN department ON role.department_id = department.id"
         );
 
-        console.table(
-            roles.map(({ title, salary, name }) => {
+        console.table(roles.map(({ title, salary, name }) => {
                 return {
                     title, 
                     salary,
