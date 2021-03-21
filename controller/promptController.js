@@ -1,4 +1,5 @@
 const inquirer = require("inquirer");
+const { listenerCount } = require("../db/connection");
 const connection = require("../db/connection");
 // const connection = require("../db/connection");
 
@@ -29,23 +30,22 @@ module.exports ={
                 this.addRole();
                 break;
             case "Add an Employee":
-                console.log("hi");
+                this.addEmployee();
                 break;
             case "View Roles":
                 this.viewRoles();
                 break;
             case "View Employees":
-                this.addEmployee();
+                this.viewEmployee();
                 break;
             case "View Department":
                 this.viewDepartments();
                 break;
             case "Edit Employee Role":
-                console.log("hi");
+                this.editEmployee();
                 break;    
         
             default:
-                console.log("bye");
                 process.exit();
                 break;
         }
@@ -60,7 +60,6 @@ module.exports ={
         });
 
         await connection.query("INSERT INTO department SET ?", [{ name }]);
-        console.log("success!!!");
         this.mainMenu();
     },
     
@@ -87,7 +86,6 @@ module.exports ={
             { department_id },
         ]);
 
-        console.log("Success!!");
         this.mainMenu();
     },
 
@@ -137,7 +135,41 @@ module.exports ={
             }),
         });    
 
+        newEmployee.role_id = role_id;
 
+        const {hasManager} = await inquirer.prompt({
+            type: "confirm",
+            message: "Does this employee have a manager?",
+            name: "hasManager",
+        });
+
+        if(!hasManager){
+            const res = await connection.query("INSERT INTO employee SET ?", [
+                newEmployee
+            ]);
+        } else {
+            const employees = await connection.query("SELECT * FROM employee");
+            const employeeData = employees.map(employee => {
+                return {
+                    name: `${employee.first_name} ${employee.last_name}`,
+                    value: employee.id,
+                };
+            });
+            const { manager_id } = await inquirer.prompt({
+                message: "Who is this employees manager?",
+                name: "manager_id",
+                type: listenerCount,
+                choice: employeeData,
+            });
+
+            newEmployee.manager_id = manager_id;
+
+            const res = await connection.query("INSERT INTO employee SET?", [
+                newEmployee,
+            ]);
+
+            this.mainMenu();
+        }
         this.mainMenu();     
 
         // NOTE: Logic for viewing department, employee and role
@@ -169,4 +201,13 @@ module.exports ={
 
             this.mainMenu();
         }, 
+
+        viewEmployees: async function () {
+            const employee = await connection.query(
+                `SELECT employee.id, employee.first_name, employee.last_name, role.title, role.salary, department.name AS department, CONCAT(manager.first_name, ' ' , manager.last_name) AS manager FROM employee
+                LEFT JOIN rold ON employee.role_id = role.id
+                LEFT JOIN department ON role.department_id = department.id
+                LEFT JOIN employee manager ON manager.id = employee.manager_id;`
+            )
+        },
     };
