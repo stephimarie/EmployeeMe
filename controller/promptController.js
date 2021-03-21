@@ -42,7 +42,7 @@ module.exports ={
                 this.viewDepartments();
                 break;
             case "Edit Employee Role":
-                this.editEmployee();
+                this.changeEmployeeRole();
                 break;    
         
             default:
@@ -227,4 +227,12 @@ module.exports ={
                 );
                 this.mainMenu();
         };
-    },
+
+        changeEmployeeRole: async function () {
+            const employee = await connection.query(
+                "SELECT id, role_id, manager_id, CONCAT(first_name, ' ', last_name) AS name FROM employees"
+            );
+
+            this.mainMenu();
+        };
+    };
