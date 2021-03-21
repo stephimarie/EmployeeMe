@@ -118,6 +118,14 @@ module.exports ={
             }),
         }),
 
+
+        const roles = await connection.query(
+            "SELECT * FROM role WHERE department_id = ?",
+            [department_id]
+        );
+        console.log(roles);
+        this.mainMenu();     
+
         // NOTE: Logic for viewing department, employee and role
         viewDepartments: async function () {
             const department = await connection.query("SELECT * FROM department");
