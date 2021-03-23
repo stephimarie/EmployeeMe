@@ -134,3 +134,19 @@ const viewEmployees = () => {
     runSearch();
   });
 };
+// Add a employee to the "employee" table
+const addEmployee = () => {
+  inquirer
+  .prompt([
+    {
+      name: "firstName",
+      type: "input",
+      message: "Enter the employee's first name:",
+      validate: validateInput,
+      transformer: titleCase,
+    },
+
+    };
+  ])
+};
+
