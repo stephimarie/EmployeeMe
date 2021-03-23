@@ -182,6 +182,12 @@ const addEmployee = () => {
                 message: "Assign a manager for the new employee (if any)",
                 choices: array2,
               })
+              .then((answer2) => {
+               // Format user's input before inserting into database
+                const newFirstName = formatInput(answers.firstName);
+                const newLastName = formatInput(answers.lastName);
+                
+              }
 
             }        
     )
