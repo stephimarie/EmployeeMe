@@ -108,3 +108,19 @@ function validateSalary(input) {
     return true;
   }
 }
+// Function that formats a user's input with title case and trimming blank spaces
+function formatInput(str) {
+  str = str.toLowerCase().trim().split(" ");
+  for (let i = 0; i < str.length; i++) {
+    str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
+  }
+  return str.join(" ");
+}
+// Function that formats a user's input with title case while typing
+function titleCase(str) {
+  str = str.toLowerCase().split(" ");
+  for (let i = 0; i < str.length; i++) {
+    str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
+  }
+  return str.join(" ");
+}
