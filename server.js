@@ -77,6 +77,11 @@ const runSearch = () => {
       case "Add Department":
         addDepartment();
           break;
+
+      case "Remove Department":
+        removeDepartment();
+          break;
+       
   
   
     }
