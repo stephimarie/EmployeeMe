@@ -65,7 +65,11 @@ const runSearch = () => {
       case "Add Role":
         addRole();
           break;
-  
+
+      case "Remove Role":
+        removeRole();
+          break;
+
   
     }
   });
