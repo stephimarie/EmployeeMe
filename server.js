@@ -49,7 +49,11 @@ const runSearch = () => {
       case "Add Employee":
         addEmployee();
           break;
-  
+          
+      case "Update An Employee's Role":
+        updateEmployeeRole();
+          break;
+
     }
   });
 };
