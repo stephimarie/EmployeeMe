@@ -124,3 +124,13 @@ function titleCase(str) {
   }
   return str.join(" ");
 }
+// View all employees in the "employee" table
+const viewEmployees = () => {
+  const query =
+    "SELECT emp.id AS ID, CONCAT(emp.first_name, ' ', emp.last_name) AS Name, r.title AS Title, d.name AS Department, CONCAT('$', FORMAT(r.salary, 2)) AS Salary, CONCAT(m.first_name, ' ', m.last_name) AS Manager FROM employee emp INNER JOIN  role r ON emp.role_id=r.id INNER JOIN  department d ON r.department_id=d.id LEFT JOIN  employee m ON emp.manager_id = m.id";
+  connection.query(query, (err, res) => {
+    if (err) throw err;
+    console.table("\x1b[35m", res);
+    runSearch();
+  });
+};
