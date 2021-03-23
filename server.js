@@ -154,6 +154,26 @@ const addEmployee = () => {
     },
 
   ])
+  .then((answers) => {
+    connection.query(
+      "SELECT id AS value, title AS name FROM role ORDER BY title ASC",
+      (err, res) => {
+        if (err) throw err;
+        let array = JSON.parse(JSON.stringify(res));
+
+        inquirer
+        .prompt({
+          name: "role",
+          type: "list",
+          message: "Choose a role for the new employee",
+          choices: array,
+        })
+
+      }
+
+    );
+
+  });
 
 };
 
