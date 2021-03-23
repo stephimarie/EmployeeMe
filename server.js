@@ -74,6 +74,10 @@ const runSearch = () => {
         viewDepartments();
           break;
   
+      case "Add Department":
+        addDepartment();
+          break;
+  
   
     }
   });
