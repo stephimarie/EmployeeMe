@@ -61,7 +61,11 @@ const runSearch = () => {
       case "View All Roles":
         viewRoles();
           break;
-      
+
+      case "Add Role":
+        addRole();
+          break;
+  
   
     }
   });
