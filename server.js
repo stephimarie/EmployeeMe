@@ -175,7 +175,15 @@ const addEmployee = () => {
               let array2 = JSON.parse(JSON.stringify(res));
 
               array2.unshift({ value: "No Manager", name: "No Manager" });
+              inquirer
+              .prompt({
+                name: "manager",
+                type: "list",
+                message: "Assign a manager for the new employee (if any)",
+                choices: array2,
+              })
 
+            }        
     )
   });
 
