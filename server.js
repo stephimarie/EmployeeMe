@@ -54,6 +54,10 @@ const runSearch = () => {
         updateEmployeeRole();
           break;
 
+      case "Remove Employee":
+        removeEmployee();
+          break;
+  
     }
   });
 };
