@@ -57,6 +57,11 @@ const runSearch = () => {
       case "Remove Employee":
         removeEmployee();
           break;
+
+      case "View All Roles":
+        viewRoles();
+          break;
+      
   
     }
   });
