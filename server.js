@@ -82,8 +82,17 @@ const runSearch = () => {
         removeDepartment();
           break;
        
-  
-  
+      case "Exit":
+        connection.end();
+          break;
     }
   });
 };
+// Function that validates the user's input is valid and is not blank
+function validateInput(input) {
+  if (input.trim() == "") {
+    console.log("\x1b[31m", "Please answer the question to proceed.");
+  } else {
+    return true;
+  }
+}
