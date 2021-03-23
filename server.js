@@ -69,7 +69,11 @@ const runSearch = () => {
       case "Remove Role":
         removeRole();
           break;
-
+          
+      case "View All Departments":
+        viewDepartments();
+          break;
+  
   
     }
   });
