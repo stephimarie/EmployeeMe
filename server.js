@@ -20,3 +20,15 @@ connection.connect(function(err) {
   runSearch();
   console.log('connected as id ' + connection.threadId);
 });
+const runSearch = () => {
+  inquirer
+  .prompt({
+    name: "action",
+    type: "list",
+    message: "What would like to do?",
+    choices: [
+      ""
+    ]
+  })
+
+};
