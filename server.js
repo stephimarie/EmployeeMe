@@ -40,5 +40,11 @@ const runSearch = () => {
       "Exit",
     ]
   })
-
+  .then((answer) => {
+    switch (answer.action) {
+      case "View All Employees";
+        viewEmployees();
+          break;
+    }
+  });
 };
