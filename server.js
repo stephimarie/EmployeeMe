@@ -152,46 +152,8 @@ const addEmployee = () => {
       validate: validateInput,
       transformer: titleCase,
     },
+
   ])
-  .then((answer) => {
-    connection.query(
-      "SELECT id AS value, title AS name FROM role ORDER BY title ASC",
-      (err, res) => {
-        if (err) throw err;
-        let array = JSON.parse(JSON.stringify(res));
-
-        inquirer
-        .prompt({
-          name: "role",
-          type: "list",
-          message: "Choose a role for the new employee",
-          choices: array,
-        })
-        .then((answer1) => {
-          connection.query(
-            "SELECT id AS value, CONCAT(first_name, ' ', last_name) AS name FROM employee ORDER BY name ASC",
-            (err, res) => {
-              if (err) throw err;
-              let array2 = JSON.parse(JSON.stringify(res));
-
-              array2.unshift({ value: "No Manager", name: "No Manager" });
-              inquirer
-              .prompt({
-                name: "manager",
-                type: "list",
-                message: "Assign a manager for the new employee (if any)",
-                choices: array2,
-              })
-              .then((answer2) => {
-               // Format user's input before inserting into database
-                const newFirstName = formatInput(answers.firstName);
-                const newLastName = formatInput(answers.lastName);
-                
-              }
-
-            }        
-    )
-  });
 
 };
 
