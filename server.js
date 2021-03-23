@@ -45,6 +45,11 @@ const runSearch = () => {
       case "View All Employees";
         viewEmployees();
           break;
+
+      case "Add Employee":
+        addEmployee();
+          break;
+  
     }
   });
 };
