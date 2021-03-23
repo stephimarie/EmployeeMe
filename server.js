@@ -96,3 +96,15 @@ function validateInput(input) {
     return true;
   }
 }
+function validateSalary(input) {
+  if (input.trim() == "") {
+    console.log("\x1b[31m", "Please answer the question to proceed.");
+  } else if (isNaN(input)) {
+    console.log(
+      "\x1b[31m",
+      "Input must be a numeric value, for example: 50000"
+    );
+  } else {
+    return true;
+  }
+}
