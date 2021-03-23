@@ -145,8 +145,13 @@ const addEmployee = () => {
       validate: validateInput,
       transformer: titleCase,
     },
-
-    };
+    {
+      name: "lastName",
+      type: "input",
+      message: "Enter the employee's last name:",
+      validate: validateInput,
+      transformer: titleCase,
+    },
   ])
 };
 
